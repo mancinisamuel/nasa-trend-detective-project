@@ -1,0 +1,32 @@
+{
+  "type": "Feature",
+  "geometry": {"type": "Point", "coordinates": [16.37, 48.21, 372.75]},
+  "properties": {
+    "parameter": {
+      "T2M_MAX": {"19831230": 1.5, "19831231": -999.0, "19840101": 9.97, "19840102": 31.2},
+      "T2M_MIN": {"19831230": -4.97, "19831231": -2.1, "19840101": -0.23, "19840102": 20.4},
+      "PRECTOTCORR": {"19831230": 0.2, "19831231": 22.5, "19840101": 0.01, "19840102": 1.0},
+      "WS10M": {"19831230": 3.55, "19831231": 4.1, "19840101": 6.35, "19840102": 2.0},
+      "WS10M_MAX": {"19831230": 3.99, "19831231": 5.0, "19840101": 10.21, "19840102": 3.1},
+      "ALLSKY_SFC_SW_DWN": {"19831230": -999.0, "19831231": -999.0, "19840101": 2.26, "19840102": 3.0}
+    }
+  },
+  "header": {
+    "title": "NASA/POWER Source Native Resolution Daily Data",
+    "api": {"version": "v2.10.3", "name": "POWER Daily API"},
+    "sources": ["MERRA2", "SRB"],
+    "fill_value": -999.0,
+    "time_standard": "LST",
+    "start": "19831230",
+    "end": "19840102"
+  },
+  "messages": [],
+  "parameters": {
+    "T2M_MAX": {"units": "C", "longname": "Temperature at 2 Meters Maximum"},
+    "T2M_MIN": {"units": "C", "longname": "Temperature at 2 Meters Minimum"},
+    "PRECTOTCORR": {"units": "mm/day", "longname": "Precipitation Corrected"},
+    "WS10M": {"units": "m/s", "longname": "Wind Speed at 10 Meters"},
+    "WS10M_MAX": {"units": "m/s", "longname": "Wind Speed at 10 Meters Maximum"},
+    "ALLSKY_SFC_SW_DWN": {"units": "MJ/m^2/day", "longname": "All Sky Surface Shortwave Downward Irradiance"}
+  }
+}

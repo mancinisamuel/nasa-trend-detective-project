@@ -1,0 +1,18 @@
+{
+  "name": "@trend-detective/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "TypeScript-Typen, generiert aus dem FastAPI-OpenAPI-Schema. src/generated.ts nie manuell ändern.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "scripts": {
+    "generate": "openapi-typescript openapi.json --output src/generated.ts",
+    "check": "openapi-typescript openapi.json --output src/generated.ts --check"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0"
+  }
+}

@@ -1,0 +1,211 @@
+/*
+ * Design tokens (brief §11). PROVISIONAL values: the visual system is owned by the UI/UX designer
+ * and will replace these numbers. Token names are the stable interface for components.
+ * Contrast (WCAG 2.x, measured against --color-bg and --color-surface):
+ *   text 15.9:1 / 14.9:1, text-muted 7.3:1 / 6.9:1, series A 6.9:1 / 6.5:1, series B 5.7:1 / 5.4:1,
+ *   status texts on their backgrounds >= 8:1, white on accent 6.9:1.
+ */
+:root {
+  /* Colour: surfaces and text */
+  --color-bg: #f6f8f8;
+  --color-surface: #ffffff;
+  --color-text: #1b2328;
+  --color-text-muted: #4b5862;
+  --color-border: #c9d1d6;
+
+  /* Colour: accent and interaction */
+  --color-accent: #00646e;
+  --color-accent-hover: #0b4f55;
+  --color-on-accent: #ffffff;
+  --color-focus: #00646e;
+
+  /* Colour: series. Petrol = location A, orange = location B. Never the only encoding:
+     lines are additionally solid (A) / dashed (B). */
+  --color-series-a: #00646e;
+  --color-series-b: #a84b00;
+  --line-dash-series-a: none;
+  --line-dash-series-b: 6 4;
+
+  /* Colour: status */
+  --color-info-bg: #e6f2f3;
+  --color-info-text: #0b4f55;
+  --color-warning-bg: #fff4e0;
+  --color-warning-text: #5c3a00;
+  --color-warning-border: #a84b00;
+  --color-error-bg: #fdecec;
+  --color-error-text: #8a1c1c;
+  /* Danger (UI-DESIGN-2): notice "not available" over the globe. Clear red on the dark globe:
+     about 5:1 against near-black; the fill is the same red at 20 % opacity. */
+  --color-danger: #e5484d;
+  --color-danger-bg: color-mix(in srgb, var(--color-danger) 20%, transparent);
+  --color-on-danger: #ffffff;
+
+  /* Globe view loader (UI-DESIGN-2): veil over the card, spinner in the timeline turquoise. */
+  --globe-loading-bg: rgba(11, 26, 36, 0.6);
+  --globe-loading-text: #f4f7f8;
+  --globe-loading-track: rgba(244, 247, 248, 0.25);
+  --globe-loading-accent: #1bb5a3;
+  --globe-loading-spinner-size: 2.5rem;
+  --globe-loading-spin: 800ms;
+  /* Matches GLOBE_LOADING_FADE_MS in EarthGlobe.tsx. */
+  --globe-loading-fade: 250ms;
+
+  /* Chart tools (UI-DESIGN-3): variable select and info tooltip over the chart corner. */
+  --chart-tools-height: 2rem;
+  --chart-tooltip-bg: #0b1a24;
+  --chart-tooltip-border: rgba(244, 247, 248, 0.22);
+  --chart-tooltip-muted: #c8d2d6;
+
+  /* Result card once calculated (UI-DESIGN-3): compact place line. */
+  --result-card-compact-title: var(--font-size-md);
+  --result-card-compact-pin: 1.125rem;
+
+  /* Floating side panel (UI-DESIGN-5): one translucent surface at the right edge of the card. */
+  --panel-width: 20rem;
+  --panel-inset: var(--space-3);
+  --panel-pad: var(--space-4);
+  --panel-gap: var(--space-3);
+  --panel-radius: 14px;
+  --panel-bg: rgba(16, 30, 33, 0.82);
+  --panel-blur: 14px;
+  --panel-border: rgba(244, 247, 248, 0.14);
+  --panel-divider: rgba(244, 247, 248, 0.12);
+  --panel-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --panel-accent: var(--color-series-b);
+  /* Lighter orange for focus rings and hover on dark surfaces (contrast >= 3:1, UI-DESIGN-12). */
+  --panel-accent-light: color-mix(in srgb, var(--panel-accent) 70%, #ffffff);
+  --panel-field-bg: rgba(244, 247, 248, 0.06);
+  --panel-field-hover: rgba(244, 247, 248, 0.1);
+  /* UI-DESIGN-14: entering a country from the globe or a continent. The side panel slides in from
+     the right, the bottom dock follows from below, the country map fades and grows meanwhile. */
+  --enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --side-enter: 380ms;
+  --dock-enter: 320ms;
+  --dock-enter-delay: 180ms;
+  --map-enter: 450ms;
+  /* After CALCULATE: the collapse button pops up once the dock has grown, with a small overshoot. */
+  --collapse-enter: 500ms;
+  --collapse-enter-delay: 350ms;
+  --collapse-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* prefers-reduced-motion: no movement or scaling, only this short fade. */
+  --reduced-fade: 150ms;
+  --panel-text: #f4f7f8;
+  --panel-muted: #b9c4c6;
+  --panel-font: 0.8125rem;
+  --panel-label: 0.6875rem;
+  --panel-value: 0.9375rem;
+  --panel-title: 0.9375rem;
+  --panel-pin: 1rem;
+  --panel-list-max: 16rem;
+
+  /* Highlights (UI-DESIGN-10): rising orange, falling blue (apart for colour-vision deficiencies;
+     arrow and sign carry the direction too). Same values as HIGHLIGHT in chartHighlights.ts. */
+  --highlight-up: #f08a3c;
+  --highlight-down: #4aa8e0;
+  --highlight-flat: #c8d2d6;
+  --highlight-hero-size: 1.5rem;
+  --highlight-badge-up-bg: rgba(240, 138, 60, 0.18);
+  --highlight-badge-down-bg: rgba(74, 168, 224, 0.18);
+  --highlight-badge-flat-bg: rgba(200, 210, 214, 0.14);
+  --highlight-record-value: 1.0625rem;
+
+  /* Toast at the bottom edge (UI-DESIGN-4); background is a light tint of the project orange
+     (UI-DESIGN-5). Text #1b2328 on it: about 10:1. */
+  --toast-bg: color-mix(in srgb, var(--color-series-b) 30%, #ffffff);
+  --toast-text: var(--color-text);
+  --toast-border: var(--color-series-b);
+  --toast-slide: 1.5rem;
+  --toast-enter: 280ms;
+  /* Matches TOAST_FADE_MS in Toast.tsx. */
+  --toast-fade: 300ms;
+
+  /* Colour: floor-plan placeholders (E-25). Calculate: white text 5.0:1. */
+  --color-placeholder: #e6e6e6;
+  --color-chrome: #f0f0f0;
+  --color-tick: #c4c4c4;
+  --color-calculate: #6a5fd1;
+  --color-calculate-hover: #5b4fc9;
+  /* Search bar over the globe (UI-DESIGN-1): background at 80 % opacity, text and icons stay
+     fully opaque. Same grey as --color-placeholder, only the fill is translucent. */
+  --color-searchbar-bg: color-mix(
+    in srgb,
+    var(--color-placeholder) 80%,
+    transparent
+  );
+
+  /* Map (E-32): the selected country is #4f86b8; the previous one a lighter, muted blue */
+  --color-map-previous: #8aa9c8;
+  --color-map-previous-stroke: #b4cbe0;
+  /* Path chip over the map (E-34): nearly opaque, so no clickable country shows through the
+     control that would catch the click. */
+  --color-map-overlay: rgba(11, 26, 36, 0.92);
+  --color-map-overlay-border: rgba(244, 247, 248, 0.18);
+
+  /* Timeline v2 (TL-2), after the reference image. Turquoise on dark: 6.9:1; field text 15:1. */
+  --timeline-bg: #142322;
+  --timeline-text: #e6eeee;
+  --timeline-text-muted: #aab6b6;
+  --timeline-tick: #8c9696;
+  --timeline-tick-active: #ffffff;
+  --timeline-tick-disabled: #3b4848;
+  --timeline-out-bg: rgba(0, 0, 0, 0.35);
+  --timeline-accent: #1bb5a3;
+  --timeline-range-bg: rgba(27, 181, 163, 0.35);
+  --timeline-field-bg: #ffffff;
+  --timeline-field-text: #142322;
+  --timeline-field-muted: #5b6767;
+  --timeline-calculate-bg: #c6f1ea;
+  --timeline-calculate-hover: #aee9df;
+  --timeline-calculate-text: #0c7a6d;
+  /* UI-DESIGN-15: "Recalculate for <place>" in the project orange, white text (contrast 5.7:1). */
+  --recalculate-bg: var(--color-series-b);
+  --recalculate-hover: color-mix(in srgb, var(--color-series-b) 85%, #000000);
+  --recalculate-text: #ffffff;
+  --recalculate-focus-ring: 2px solid var(--panel-accent-light);
+  --timeline-focus-ring: 3px solid #ffd166;
+  /* UI-DESIGN-2: compact timeline row; track 36 -> 20 px, years 16 -> 12 px. */
+  --timeline-height: 3.75rem;
+  --timeline-track-height: 1.25rem;
+  --timeline-handle-width: 6px;
+  --timeline-year-label-size: 0.75rem;
+  --timeline-handle-year-size: 0.75rem;
+  --timeline-field-year-size: var(--font-size-md);
+  --timeline-bar-padding: 1rem 1rem 0.95rem;
+
+  /* Spacing (4 px scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Typography */
+  --font-family-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.2;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-sheet: 320ms;
+
+  /* Layout: height of the grip row at the top of the bottom sheet (E-30) */
+  --sheet-head: 3rem;
+
+  /* Focus */
+  --focus-ring: 3px solid var(--color-focus);
+  --focus-offset: 2px;
+}

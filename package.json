@@ -1,0 +1,19 @@
+{
+  "name": "trend-detective",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Trend Detective: Klimatrends für zwei Standorte vergleichen (NASA Space Apps).",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm run \"/^dev:(api|web)$/\"",
+    "dev:web": "pnpm --filter @trend-detective/web dev",
+    "dev:api": "uv run --project apps/api uvicorn --app-dir src trend_detective.main:app --host 127.0.0.1 --port 8000 --reload",
+    "contracts": "uv run --project apps/api python scripts/export_openapi.py && pnpm --filter @trend-detective/contracts run generate",
+    "check:api": "uv --directory apps/api run ruff check . && uv --directory apps/api run ruff format --check . && uv --directory apps/api run mypy && uv --directory apps/api run pytest",
+    "check": "pnpm run check:api && pnpm --recursive --if-present run check",
+    "test:e2e": "pnpm --filter @trend-detective/web run test:e2e"
+  }
+}
